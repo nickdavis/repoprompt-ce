@@ -1,3 +1,6 @@
+import RepoPromptFileSystem
+import RepoPromptSettingsCore
+
 //
 //  AppearanceSettingsView.swift
 //  RepoPrompt
@@ -34,7 +37,7 @@ struct AppearanceSettingsView: View {
             get: { globalSettings.appIconModeRaw() },
             set: { newValue in
                 globalSettings.setAppIconModeRaw(newValue)
-                AppIconController.shared.apply(modeRawValue: newValue)
+                AppearanceController.shared.applyAppIconMode(newValue)
             }
         )
     }

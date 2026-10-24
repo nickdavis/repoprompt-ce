@@ -1,4 +1,5 @@
 import AppKit
+import RepoPromptSettingsCore
 
 enum AppIconMode: String, CaseIterable, Identifiable {
     case system = "System"
@@ -26,14 +27,12 @@ enum AppIconMode: String, CaseIterable, Identifiable {
 
 @MainActor
 final class AppIconController {
-    static let shared = AppIconController()
-
     private let application: NSApplication
     private let defaultApplicationIcon: NSImage?
     private var appearanceObservation: NSKeyValueObservation?
     private var lastAppliedMode: AppIconMode?
 
-    private init(application: NSApplication = .shared) {
+    init(application: NSApplication = .shared) {
         self.application = application
         defaultApplicationIcon = application.applicationIconImage.copy() as? NSImage
         appearanceObservation = application.observe(\.effectiveAppearance, options: [.new]) { [weak self] _, _ in
